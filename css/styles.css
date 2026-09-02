@@ -1152,7 +1152,12 @@ button {
   }
 
   .hero-section {
-    min-height: 58svh;
+    min-height: 64svh;
+    min-height: max(64svh, 480px);
+  }
+
+  .hero-content {
+    padding: 5.5rem 1.5rem 2.5rem;
   }
 
   .hero-background-img {
