@@ -19,7 +19,7 @@
 
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
 
-  --trellis: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84'%3E%3Cpath d='M42 0 L84 42 L42 84 L0 42 Z' fill='none' stroke='%237A8A2E' stroke-width='1' opacity='0.07'/%3E%3Ccircle cx='42' cy='42' r='2' fill='%236E1F2A' opacity='0.055'/%3E%3C/svg%3E");
+  --floral: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' viewBox='0 0 360 360'%3E%3Cg opacity='0.05'%3E%3Cg transform='translate(18,26) rotate(12) scale(0.7)'%3E%3Cpath d='M0 70 C 25 45, 55 62, 88 30' stroke='%237A8A2E' stroke-width='2.2' fill='none'/%3E%3Cpath d='M14 60 C 10 48, 16 38, 27 36 C 29 48, 23 57, 14 60 Z' fill='%237A8A2E'/%3E%3Cpath d='M32 51 C 34 37, 48 29, 60 33 C 54 46, 42 52, 32 51 Z' fill='%237A8A2E'/%3E%3Cpath d='M60 41 C 65 29, 79 25, 90 31 C 82 42, 69 46, 60 41 Z' fill='%237A8A2E'/%3E%3C/g%3E%3Cg transform='translate(200,150) rotate(196) scale(0.72)'%3E%3Cpath d='M0 70 C 25 45, 55 62, 88 30' stroke='%237A8A2E' stroke-width='2.2' fill='none'/%3E%3Cpath d='M14 60 C 10 48, 16 38, 27 36 C 29 48, 23 57, 14 60 Z' fill='%237A8A2E'/%3E%3Cpath d='M32 51 C 34 37, 48 29, 60 33 C 54 46, 42 52, 32 51 Z' fill='%237A8A2E'/%3E%3Cpath d='M60 41 C 65 29, 79 25, 90 31 C 82 42, 69 46, 60 41 Z' fill='%237A8A2E'/%3E%3C/g%3E%3Cg transform='translate(96,284) rotate(84) scale(0.62)'%3E%3Cpath d='M0 70 C 25 45, 55 62, 88 30' stroke='%237A8A2E' stroke-width='2.4' fill='none'/%3E%3Cpath d='M14 60 C 10 48, 16 38, 27 36 C 29 48, 23 57, 14 60 Z' fill='%237A8A2E'/%3E%3Cpath d='M32 51 C 34 37, 48 29, 60 33 C 54 46, 42 52, 32 51 Z' fill='%237A8A2E'/%3E%3Cpath d='M60 41 C 65 29, 79 25, 90 31 C 82 42, 69 46, 60 41 Z' fill='%237A8A2E'/%3E%3C/g%3E%3Cg transform='translate(298,58) scale(0.85)' fill='%236E1F2A'%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(288)'/%3E%3Ccircle cx='0' cy='0' r='3.6' fill='%239CAF3E'/%3E%3C/g%3E%3Cg transform='translate(64,196) scale(0.68)' fill='%236E1F2A'%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(288)'/%3E%3Ccircle cx='0' cy='0' r='3.6' fill='%239CAF3E'/%3E%3C/g%3E%3Cg transform='translate(322,306) scale(0.55)' fill='%236E1F2A'%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-11' rx='5' ry='8' transform='rotate(288)'/%3E%3Ccircle cx='0' cy='0' r='3.6' fill='%239CAF3E'/%3E%3C/g%3E%3Cg transform='translate(150,86) rotate(-18)'%3E%3Cpath d='M0 14 C 8 2, 22 0, 30 8 C 20 16, 7 18, 0 14 Z' fill='%237A8A2E'/%3E%3C/g%3E%3Cg transform='translate(286,222) rotate(140) scale(0.9)'%3E%3Cpath d='M0 14 C 8 2, 22 0, 30 8 C 20 16, 7 18, 0 14 Z' fill='%237A8A2E'/%3E%3C/g%3E%3Ccircle cx='120' cy='130' r='2.2' fill='%236E1F2A'/%3E%3Ccircle cx='310' cy='180' r='2.2' fill='%236E1F2A'/%3E%3Ccircle cx='180' cy='330' r='2.2' fill='%236E1F2A'/%3E%3Ccircle cx='40' cy='330' r='2' fill='%236E1F2A'/%3E%3C/g%3E%3C/svg%3E");
 
   --space-section: clamp(5rem, 12vw, 9rem);
   --max-width: 1100px;
@@ -42,7 +42,7 @@ html {
 
 body {
   background-color: var(--color-cream);
-  background-image: var(--grain), var(--trellis);
+  background-image: var(--grain), var(--floral);
   color: var(--color-espresso);
   font-family: var(--font-serif);
   font-size: 1.125rem;
@@ -104,29 +104,6 @@ button {
   opacity: 0.65;
 }
 
-/* Tinted full-bleed band for rhythm between cream sections */
-
-.section-wrapper.band,
-.countdown-section.band {
-  max-width: none;
-  background-color: #F4EDDE;
-  background-image: var(--grain), var(--trellis);
-  border-top: 1px solid var(--color-hairline);
-  border-bottom: 1px solid var(--color-hairline);
-}
-
-.section-wrapper.band > .venues-list {
-  max-width: var(--max-width);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.section-wrapper.band > .rsvp-card {
-  max-width: var(--max-width-narrow);
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* Animated underline text link — the single interactive motif */
 
 .text-link {
@@ -170,7 +147,6 @@ button {
   background-color: rgba(251, 247, 238, 0.94);
   backdrop-filter: blur(8px);
   padding: 0.85rem 0;
-  box-shadow: 0 1px 0 var(--color-hairline);
 }
 
 .nav-container {
@@ -603,11 +579,6 @@ button {
   grid-template-columns: 120px 1fr;
   gap: clamp(1.5rem, 4vw, 3.5rem);
   padding: clamp(2.5rem, 5vw, 4rem) 0;
-  border-top: 1px solid var(--color-hairline);
-}
-
-.chapter-row:last-child {
-  border-bottom: 1px solid var(--color-hairline);
 }
 
 .chapter-row-alt {
@@ -741,61 +712,6 @@ button {
 @keyframes venuePulse {
   0%, 100% { box-shadow: none; }
   35% { box-shadow: 0 0 0 6px rgba(156, 175, 62, 0.35); }
-}
-
-/* ==========================================================================
-   GALLERY — asymmetric editorial grid with museum labels
-   ========================================================================== */
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: clamp(1.5rem, 3.5vw, 2.5rem) clamp(1rem, 2.5vw, 2rem);
-}
-
-.gallery-card {
-  grid-column: span 2;
-  display: grid;
-  gap: 0.7rem;
-}
-
-.gallery-card:nth-child(2) {
-  grid-column: span 4;
-  margin-top: clamp(2rem, 5vw, 4rem);
-}
-
-.gallery-card:nth-child(4) {
-  grid-column: span 4;
-  margin-top: calc(-1 * clamp(1rem, 3vw, 2.5rem));
-}
-
-.gallery-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  cursor: zoom-in;
-  transition: transform 0.5s ease;
-}
-
-.gallery-card:hover img {
-  transform: scale(1.015);
-}
-
-.gallery-card-large img,
-.gallery-card:nth-child(2) img,
-.gallery-card:nth-child(4) img {
-  aspect-ratio: 16 / 10;
-}
-
-.gallery-card:not(.gallery-card-large):not(:nth-child(2)):not(:nth-child(4)) img {
-  aspect-ratio: 4 / 5;
-}
-
-.gallery-caption {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--color-espresso-soft);
 }
 
 /* ==========================================================================
@@ -1052,56 +968,6 @@ button {
   color: var(--color-burgundy);
 }
 
-/* Lightbox */
-
-.lightbox-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 300;
-  background: rgba(42, 30, 26, 0.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.lightbox-backdrop.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.lightbox-close-btn {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
-  color: var(--color-cream);
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  z-index: 1;
-}
-
-.lightbox-content-wrapper {
-  max-width: min(90vw, 900px);
-  text-align: center;
-}
-
-.lightbox-image {
-  max-width: 100%;
-  max-height: 82vh;
-  object-fit: contain;
-  margin: 0 auto;
-}
-
-.lightbox-caption {
-  margin-top: 1.2rem;
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: rgba(251, 247, 238, 0.85);
-}
-
 /* ==========================================================================
    MUSIC — small fixed vinyl
    ========================================================================== */
@@ -1173,7 +1039,6 @@ button {
 .site-footer {
   text-align: center;
   padding: var(--space-section) 1.5rem;
-  border-top: 1px solid var(--color-hairline);
 }
 
 .footer-names {
@@ -1275,24 +1140,6 @@ button {
     order: 0;
     text-align: left;
   }
-
-  .gallery-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .gallery-card,
-  .gallery-card:nth-child(2),
-  .gallery-card:nth-child(4) {
-    grid-column: span 1;
-    margin-top: 0;
-  }
-
-  .gallery-card img,
-  .gallery-card-large img,
-  .gallery-card:nth-child(2) img,
-  .gallery-card:nth-child(4) img {
-    aspect-ratio: 4 / 5;
-  }
 }
 
 @media (max-width: 720px) {
@@ -1302,6 +1149,10 @@ button {
 
   .nav-toggle-mobile {
     display: flex;
+  }
+
+  .hero-background-img {
+    object-position: 30% 22%;
   }
 
   .countdown-grid {

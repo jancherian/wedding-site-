@@ -54,30 +54,6 @@ window.WEDDING_CONFIG = {
     storyImage: "assets/images/couple-cathedral.jpg"
   },
 
-  // Couple Gallery Memories
-  gallery: [
-    {
-      image: "assets/images/couple-proposal.jpg",
-      caption: "A Promise Made — The Proposal",
-      tag: "Engagement"
-    },
-    {
-      image: "assets/images/couple-cathedral.jpg",
-      caption: "A Lifetime Begun — The Cathedral",
-      tag: "Holy Matrimony"
-    },
-    {
-      image: "assets/images/couple-sunset.jpg",
-      caption: "Golden Moments Together",
-      tag: "Celebration"
-    },
-    {
-      image: "assets/images/couple-portrait.jpg",
-      caption: "Joy & Boundless Love",
-      tag: "Ashik & Jerrin"
-    }
-  ],
-
   // Two Events Schedule (Editorial 01 & 02)
   schedule: [
     {

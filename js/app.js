@@ -151,17 +151,6 @@
         </article>
       `).join('');
     }
-
-    // Populate Memories Gallery
-    const galleryContainer = document.getElementById('couple-gallery-container');
-    if (galleryContainer && config.gallery) {
-      galleryContainer.innerHTML = config.gallery.map((item, i) => `
-        <figure class="gallery-card reveal-on-scroll ${i === 0 ? 'gallery-card-large' : ''}">
-          <img src="${item.image}" alt="${item.caption}" loading="lazy" />
-          <figcaption class="gallery-caption">${item.caption}</figcaption>
-        </figure>
-      `).join('');
-    }
   }
 
   /* ==========================================================================
