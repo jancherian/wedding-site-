@@ -64,9 +64,8 @@
      ========================================================================== */
   function init() {
     renderConfigData();
-    initIntroScreen();
     initNavigation();
-    initHeroParallax();
+    initSmoothScroll();
     initCountdown();
     initVinylMusicPlayer();
     initRSVP();
@@ -87,54 +86,25 @@
     document.querySelectorAll('.js-monogram').forEach(el => el.textContent = monogram);
     document.querySelectorAll('.js-tagline').forEach(el => el.textContent = tagline);
 
-    // Populate timeline (2 Events: Engagement + Matrimony & Lunch)
+    // Populate chapter list (2 Events: Engagement + Matrimony & Lunch)
     const timelineContainer = document.getElementById('timeline-container');
     if (timelineContainer && config.schedule) {
-      timelineContainer.innerHTML = config.schedule.map(item => `
-        <div class="timeline-card reveal-on-scroll">
-          <div class="timeline-header-bar">
-            <span class="timeline-number">${item.number}</span>
-            <span class="timeline-badge">${item.badge}</span>
-          </div>
-          <h3 class="timeline-title">${item.title}</h3>
-          <p class="timeline-subtitle"><em>${item.subtitle}</em></p>
-
-          <div class="itinerary-meta-box">
-            <div class="itinerary-meta-item">
-              <svg class="itinerary-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              <span><strong>${item.date}</strong></span>
-            </div>
-            <div class="itinerary-meta-item">
-              <svg class="itinerary-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+      timelineContainer.innerHTML = config.schedule.map((item, i) => `
+        <article class="chapter-row reveal-on-scroll ${i % 2 === 1 ? 'chapter-row-alt' : ''}">
+          <div class="chapter-number">${item.number}</div>
+          <div class="chapter-body">
+            <h3 class="chapter-title">${item.title}</h3>
+            <p class="chapter-subtitle">${item.subtitle}</p>
+            <p class="chapter-meta">
+              <span class="chapter-date">${item.date}</span>
+              <span class="chapter-meta-sep" aria-hidden="true">·</span>
               <span>${item.time}</span>
-            </div>
-            <div class="itinerary-meta-item">
-              <svg class="itinerary-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <span>${item.venueName}</span>
-            </div>
+            </p>
+            <p class="chapter-venue"><em>${item.venueName}</em></p>
+            <p class="chapter-desc">${item.details}</p>
+            <button class="text-link js-scroll-to-venue" data-target="${item.venueTargetId}">View Venue &amp; Directions</button>
           </div>
-
-          <p class="timeline-desc">${item.details}</p>
-
-          <button class="itinerary-venue-btn js-scroll-to-venue" data-target="${item.venueTargetId}">
-            <span>View Venue &amp; Directions</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </button>
-        </div>
+        </article>
       `).join('');
 
       // Attach scroll-to-venue click listeners
@@ -159,76 +129,43 @@
       });
     }
 
-    // Populate Venues with couple artwork
+    // Populate Venues
     const venuesContainer = document.getElementById('venues-container');
     if (venuesContainer && config.venues) {
       venuesContainer.innerHTML = config.venues.map(v => `
-        <div class="venue-card reveal-on-scroll" id="${v.id}">
+        <article class="venue-row reveal-on-scroll" id="${v.id}">
           <div class="venue-image-wrapper">
             <img src="${v.image}" alt="${v.name}" class="venue-img" loading="lazy" />
-            <span class="venue-tag">${v.type}</span>
           </div>
           <div class="venue-info">
+            <span class="section-eyebrow">${v.type}</span>
             <h3 class="venue-name">${v.name}</h3>
-            <p class="venue-time-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline; vertical-align:-2px; margin-right:4px;">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-              ${v.time}
-            </p>
-            <p class="venue-address">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              ${v.address}
-            </p>
-            <ul class="venue-features-list">
-              ${v.features.map(f => `<li>✦ ${f}</li>`).join('')}
-            </ul>
+            <p class="venue-time">${v.time}</p>
+            <p class="venue-address">${v.address}</p>
             ${v.mapsUrl ? `
-              <a href="${v.mapsUrl}" target="_blank" rel="noopener noreferrer" class="venue-btn">
-                <span>Get Directions</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              <a href="${v.mapsUrl}" target="_blank" rel="noopener noreferrer" class="text-link">
+                Get Directions
               </a>
             ` : ''}
           </div>
-        </div>
+        </article>
       `).join('');
     }
 
     // Populate Memories Gallery
     const galleryContainer = document.getElementById('couple-gallery-container');
     if (galleryContainer && config.gallery) {
-      galleryContainer.innerHTML = config.gallery.map(item => `
-        <div class="gallery-card reveal-on-scroll">
+      galleryContainer.innerHTML = config.gallery.map((item, i) => `
+        <figure class="gallery-card reveal-on-scroll ${i === 0 ? 'gallery-card-large' : ''}">
           <img src="${item.image}" alt="${item.caption}" loading="lazy" />
-          <div class="gallery-overlay-tag">${item.caption}</div>
-        </div>
+          <figcaption class="gallery-caption">${item.caption}</figcaption>
+        </figure>
       `).join('');
     }
   }
 
   /* ==========================================================================
-     2. INTRO SCREEN
-     ========================================================================== */
-  function initIntroScreen() {
-    if (!introScreen) return;
-
-    const dismissIntro = () => {
-      introScreen.classList.add('fade-out');
-      setTimeout(() => {
-        introScreen.style.display = 'none';
-      }, 850);
-    };
-
-    const timer = setTimeout(dismissIntro, 1800);
-    introScreen.addEventListener('click', () => {
-      clearTimeout(timer);
-      dismissIntro();
-    });
-  }
-
-  /* ==========================================================================
-     3. STICKY NAV & SCROLL SPY
+     2. STICKY NAV & SCROLL SPY
      ========================================================================== */
   function initNavigation() {
     window.addEventListener('scroll', () => {
@@ -298,21 +235,54 @@
   }
 
   /* ==========================================================================
-     4. HERO PARALLAX
+     3. DAMPED INERTIAL SCROLL (desktop fine pointers)
+     Wheel input is eased so trackpad scrolling glides instead of flying.
      ========================================================================== */
-  function initHeroParallax() {
-    if (!heroBg) return;
+  function initSmoothScroll() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
 
+    let target = window.scrollY;
+    let current = window.scrollY;
+    let rafId = null;
+
+    const maxScroll = () =>
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    function step() {
+      current += (target - current) * 0.085;
+      if (Math.abs(target - current) < 0.5) {
+        current = target;
+        window.scrollTo(0, current);
+        rafId = null;
+        return;
+      }
+      window.scrollTo(0, current);
+      rafId = requestAnimationFrame(step);
+    }
+
+    window.addEventListener('wheel', (e) => {
+      if (e.ctrlKey) return; // don't fight pinch-zoom
+      // let inner scrollables (modals) behave natively
+      if (e.target instanceof Element && e.target.closest('.modal-dialog')) return;
+      e.preventDefault();
+      const delta = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
+      target = Math.max(0, Math.min(target + delta, maxScroll()));
+      if (rafId === null) {
+        rafId = requestAnimationFrame(step);
+      }
+    }, { passive: false });
+
+    // stay in sync with scrolls from other sources (anchor clicks, keyboard)
     window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      if (scrollY < window.innerHeight) {
-        heroBg.style.transform = `scale(1.05) translateY(${scrollY * 0.2}px)`;
+      if (rafId === null) {
+        target = current = window.scrollY;
       }
     }, { passive: true });
   }
 
   /* ==========================================================================
-     5. DUAL COUNTDOWN TIMER
+     4. DUAL COUNTDOWN TIMER
      ========================================================================== */
   function initCountdown() {
     const engagementIso = config.event?.engagementDateISO || "2026-09-12T11:30:00";
@@ -328,19 +298,16 @@
         if (cdDays) cdDays.textContent = '00';
         if (cdHours) cdHours.textContent = '00';
         if (cdMinutes) cdMinutes.textContent = '00';
-        if (cdSeconds) cdSeconds.textContent = '00';
         return;
       }
 
       const days = Math.floor(difference / (1000 * 60 * 60 * 24));
       const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
       if (cdDays) cdDays.textContent = String(days).padStart(2, '0');
       if (cdHours) cdHours.textContent = String(hours).padStart(2, '0');
       if (cdMinutes) cdMinutes.textContent = String(minutes).padStart(2, '0');
-      if (cdSeconds) cdSeconds.textContent = String(seconds).padStart(2, '0');
     }
 
     if (countdownTabs.length > 0) {

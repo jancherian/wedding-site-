@@ -21,14 +21,14 @@ window.WEDDING_CONFIG = {
   // Dates & Locations
   event: {
     // Engagement
-    engagementDateISO: "2026-09-12T11:30:00",
+    engagementDateISO: "2026-09-12T11:30:00+05:30",
     engagementDisplayDate: "Saturday, 12 September 2026",
     engagementTime: "11:30 AM",
     engagementLocation: "Kamballur, Kasaragod",
 
     // Wedding & Celebration Lunch
-    weddingDateISO: "2026-09-21T10:30:00",
-    weddingEndISO: "2026-09-21T15:00:00",
+    weddingDateISO: "2026-09-21T10:30:00+05:30",
+    weddingEndISO: "2026-09-21T15:00:00+05:30",
     weddingDisplayDate: "Monday, 21 September 2026",
     weddingTime: "10:30 AM",
     weddingLocation: "East Fort, Thrissur",

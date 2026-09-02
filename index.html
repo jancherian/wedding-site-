@@ -16,10 +16,10 @@
   <!-- Favicon SVG -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%236E1F2A' stroke='%239CAF3E' stroke-width='4'/%3E%3Ctext x='50' y='60' font-family='serif' font-size='38' font-weight='bold' fill='%23FBF7EE' text-anchor='middle'%3E✦%3C/text%3E%3C/svg%3E">
 
-  <!-- Google Fonts: Cormorant Garamond, Playfair Display, Inter, Outfit -->
+  <!-- Google Fonts: Cormorant Garamond + Inter only -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
@@ -30,53 +30,24 @@
   <div id="youtube-audio-frame" style="position: fixed; top: -9999px; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;" aria-hidden="true"></div>
 
   <!-- ==========================================================================
-       1. INTRO / WELCOME SCREEN
-       ========================================================================== -->
-  <div id="intro-screen" aria-label="Welcome screen">
-    <div class="intro-content">
-      <div class="intro-crest">
-        <span class="js-monogram">A &amp; J</span>
-      </div>
-      <p class="intro-eyebrow">Two Beautiful Moments</p>
-      <h1 class="intro-tagline js-tagline">“invite you to share in two beautiful moments, a promise made and a lifetime begun.”</h1>
-      <p class="intro-date js-hero-dates">12 &amp; 21 September 2026</p>
-      <div class="intro-prompt">
-        <span>Click anywhere to enter</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       2. TOP BRAND CREST LOGO & NAVIGATION
+       HEADER & NAVIGATION
        ========================================================================== -->
   <header class="site-header" id="site-header">
     <div class="nav-container">
       <a href="#hero" class="site-logo-brand" aria-label="Ashik & Jerrin — Back to top">
-        <div class="logo-crest">
-          <svg class="crest-wreath" viewBox="0 0 100 100" fill="none">
-            <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-          </svg>
-          <span class="crest-initials">A<span class="crest-sparkle">✦</span>J</span>
-        </div>
-        <div class="logo-text-group">
-          <span class="logo-names js-couple-names">Ashik &amp; Jerrin</span>
-          <span class="logo-subtitle">September 2026</span>
-        </div>
+        <span class="logo-names js-couple-names">Ashik &amp; Jerrin</span>
       </a>
 
-      <!-- Desktop Navigation Links -->
       <nav class="nav-links-desktop" aria-label="Main Navigation">
+        <a href="#story" class="nav-link">Our Story</a>
         <a href="#celebration" class="nav-link">Celebrations</a>
         <a href="#venues" class="nav-link">Venues</a>
+        <a href="#gallery" class="nav-link">Memories</a>
         <a href="#wishes" class="nav-link">Wishes</a>
         <a href="#rsvp" class="nav-link nav-rsvp-btn">RSVP</a>
       </nav>
 
-      <!-- Mobile Hamburger Toggle -->
-      <button class="nav-toggle-mobile" id="mobile-nav-toggle" aria-label="Toggle navigation menu">
-        <span></span>
+      <button class="nav-toggle-mobile" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span>
         <span></span>
       </button>
@@ -84,19 +55,21 @@
   </header>
 
   <!-- Mobile Navigation Overlay Drawer -->
-  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay" aria-hidden="true">
     <ul class="mobile-nav-links">
       <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+      <li><a href="#story" class="mobile-nav-link">Our Story</a></li>
       <li><a href="#celebration" class="mobile-nav-link">Celebrations</a></li>
       <li><a href="#venues" class="mobile-nav-link">Venues</a></li>
-      <li><a href="#wishes" class="mobile-nav-link">Guestbook</a></li>
-      <li><a href="#rsvp" class="mobile-nav-link btn-primary" style="margin-top: 1rem;">RSVP Now</a></li>
+      <li><a href="#gallery" class="mobile-nav-link">Memories</a></li>
+      <li><a href="#wishes" class="mobile-nav-link">Wishes</a></li>
+      <li><a href="#rsvp" class="mobile-nav-link mobile-rsvp-link">RSVP</a></li>
     </ul>
   </div>
 
   <main>
     <!-- ==========================================================================
-         3. HERO SECTION (IMMERSIVE FULL-SCREEN BACKDROP WITH CENTERED COUPLE)
+         HERO — full-bleed cover
          ========================================================================== -->
     <section class="hero-section" id="hero">
       <div class="hero-background-wrapper">
@@ -109,163 +82,142 @@
         <h1 class="hero-couple-names">
           Ashik <span class="ampersand">&amp;</span> Jerrin
         </h1>
-        <p class="hero-tagline-quote js-tagline">
-          invite you to share in two beautiful moments, a promise made and a lifetime begun.
-        </p>
-
-        <div class="hero-details-row">
-          <span class="js-hero-dates">12 &amp; 21 September 2026</span>
-          <span class="hero-dot-separator">✦</span>
-          <span class="js-hero-locations">Kasaragod &amp; Thrissur, Kerala</span>
-        </div>
-
-        <div class="hero-action-buttons">
-          <a href="#rsvp" class="btn-primary">
-            <span>RSVP Attendance</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-          </a>
-          <a href="#celebration" class="btn-secondary">The Schedule</a>
-        </div>
-
-        <div class="scroll-cue">
-          <span>Scroll to explore</span>
-          <div class="scroll-cue-mouse"></div>
-        </div>
+        <div class="hero-rule" aria-hidden="true"></div>
+        <p class="hero-date-line js-hero-dates">12 &amp; 21 September 2026</p>
+        <p class="hero-location-line js-hero-locations">Kasaragod &amp; Thrissur, Kerala</p>
       </div>
     </section>
 
     <!-- ==========================================================================
-         4. A NOTE FROM US (Editorial Split with Couple Cathedral Painting)
+         A NOTE FROM US
          ========================================================================== -->
     <section class="section-wrapper" id="story">
-      <div class="typographic-divider">✦ ✧ ✦</div>
-      
       <div class="story-editorial-split reveal-on-scroll">
         <div class="story-photo-frame">
           <img src="assets/images/couple-cathedral.jpg" alt="Ashik &amp; Jerrin at the Cathedral" loading="lazy" />
-          <div class="story-photo-caption">“A promise made, a lifetime begun.”</div>
         </div>
         <div class="story-content-side">
           <div class="section-eyebrow">A Note From Us</div>
-          <p class="story-text">
+          <p class="story-text js-story-note">
             With joyful hearts and the blessings of our parents, we invite you to share in two beautiful moments of our lives: a promise made and a lifetime begun. Your presence, prayers, and blessings mean the world to us as we step into this sacred journey together.
           </p>
           <div class="story-signature">With all our love, Ashik &amp; Jerrin</div>
         </div>
       </div>
-
-      <div class="typographic-divider">✦ ✧ ✦</div>
     </section>
 
     <!-- ==========================================================================
-         5. DUAL COUNTDOWN TIMER (With Proposal Artwork Backdrop)
+         FULL-BLEED INTERLUDE — the proposal
          ========================================================================== -->
-    <section class="countdown-section" id="countdown" aria-label="Wedding & Engagement Countdown">
-      <div class="countdown-background-wrapper">
-        <img src="assets/images/couple-proposal.jpg" alt="The Proposal - Kamballur Waterfront" class="countdown-bg-img" />
-        <div class="countdown-overlay"></div>
+    <section class="interlude-section" aria-label="The Proposal">
+      <img src="assets/images/couple-proposal.jpg" alt="The Proposal — Ashik and Jerrin by the water" class="interlude-image" loading="lazy" />
+      <div class="interlude-overlay"></div>
+      <p class="interlude-caption reveal-on-scroll">A promise made</p>
+    </section>
+
+    <!-- ==========================================================================
+         COUNTDOWN — quiet numerals on cream
+         ========================================================================== -->
+    <section class="countdown-section band" id="countdown" aria-label="Wedding & Engagement Countdown">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-eyebrow">Counting the Days</span>
+        <h2 class="section-title">Until We Celebrate</h2>
       </div>
 
-      <div class="countdown-content-inner">
-        <div class="section-header reveal-on-scroll">
-          <span class="section-eyebrow">Counting Down the Moments</span>
-          <h2 class="section-title">Until We Celebrate</h2>
-        </div>
+      <div class="countdown-tabs-wrapper reveal-on-scroll">
+        <button class="countdown-tab-btn" data-event="engagement">The Engagement · Sept 12</button>
+        <button class="countdown-tab-btn active" data-event="wedding">The Wedding · Sept 21</button>
+      </div>
 
-        <div class="countdown-tabs-wrapper reveal-on-scroll">
-          <button class="countdown-tab-btn" data-event="engagement">01. The Engagement (Sept 12)</button>
-          <button class="countdown-tab-btn active" data-event="wedding">02. The Wedding &amp; Feast (Sept 21)</button>
-        </div>
+      <div class="countdown-target-indicator reveal-on-scroll" id="countdown-target-label">
+        Until The Holy Matrimony &amp; Celebration Lunch · 21 September 2026 (Thrissur)
+      </div>
 
-        <div class="countdown-target-indicator reveal-on-scroll" id="countdown-target-label">
-          Until The Holy Matrimony &amp; Celebration Lunch · 21 September 2026 (Thrissur)
+      <div class="countdown-grid">
+        <div class="countdown-tile reveal-on-scroll">
+          <span class="countdown-number" id="countdown-days">00</span>
+          <span class="countdown-label">Days</span>
         </div>
-
-        <div class="countdown-grid">
-          <div class="countdown-tile reveal-on-scroll">
-            <span class="countdown-number" id="countdown-days">00</span>
-            <span class="countdown-label">Days</span>
-          </div>
-          <div class="countdown-tile reveal-on-scroll">
-            <span class="countdown-number" id="countdown-hours">00</span>
-            <span class="countdown-label">Hours</span>
-          </div>
-          <div class="countdown-tile reveal-on-scroll">
-            <span class="countdown-number" id="countdown-minutes">00</span>
-            <span class="countdown-label">Minutes</span>
-          </div>
-          <div class="countdown-tile reveal-on-scroll">
-            <span class="countdown-number" id="countdown-seconds">00</span>
-            <span class="countdown-label">Seconds</span>
-          </div>
+        <div class="countdown-tile reveal-on-scroll">
+          <span class="countdown-number" id="countdown-hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-tile reveal-on-scroll">
+          <span class="countdown-number" id="countdown-minutes">00</span>
+          <span class="countdown-label">Minutes</span>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         6. THE CELEBRATION (TWO DISTINCT EVENTS: ENGAGEMENT & WEDDING)
+         TWO CELEBRATIONS — editorial chapter list
          ========================================================================== -->
     <section class="section-wrapper" id="celebration">
       <div class="section-header reveal-on-scroll">
-        <span class="section-eyebrow">Itinerary of Joy</span>
+        <span class="section-eyebrow">The Itinerary</span>
         <h2 class="section-title">Two Celebrations</h2>
-        <p class="section-subtitle">Two cherished chapters in Kasaragod &amp; Thrissur</p>
       </div>
 
-      <div class="timeline-grid" id="timeline-container">
+      <div class="chapter-list" id="timeline-container">
         <!-- Rendered dynamically from config -->
       </div>
     </section>
 
     <!-- ==========================================================================
-         7. THE VENUES
+         THE VENUES
          ========================================================================== -->
-    <section class="section-wrapper" id="venues">
+    <section class="section-wrapper band" id="venues">
       <div class="section-header reveal-on-scroll">
         <span class="section-eyebrow">Locations &amp; Directions</span>
         <h2 class="section-title">The Venues</h2>
-        <p class="section-subtitle">Kamballur, Kasaragod &amp; Our Lady of Lourdes Metropolitan Cathedral, Thrissur</p>
       </div>
 
-      <div class="venues-grid" id="venues-container">
+      <div class="venues-list" id="venues-container">
         <!-- Rendered dynamically from config -->
       </div>
     </section>
 
     <!-- ==========================================================================
-         8. RSVP SECTION
+         CHERISHED MEMORIES GALLERY
          ========================================================================== -->
-    <section class="section-wrapper section-wrapper-narrow" id="rsvp">
+    <section class="section-wrapper" id="gallery">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-eyebrow">Cherished Moments</span>
+        <h2 class="section-title">Memories of Us</h2>
+      </div>
+
+      <div class="gallery-grid" id="couple-gallery-container">
+        <!-- Rendered dynamically from config -->
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         RSVP — reply card
+         ========================================================================== -->
+    <section class="section-wrapper section-wrapper-narrow band" id="rsvp">
       <div class="section-header reveal-on-scroll">
         <span class="section-eyebrow">Kindly Respond</span>
         <h2 class="section-title">RSVP</h2>
-        <p class="section-subtitle">Please let us know which celebrations you will be attending</p>
       </div>
 
       <div class="rsvp-card reveal-on-scroll">
         <div id="rsvp-form-container">
           <form id="rsvp-form" autocomplete="on">
             <div class="form-group">
-              <label for="rsvp-name" class="form-label">Full Name(s) *</label>
+              <label for="rsvp-name" class="form-label">Name(s)</label>
               <input type="text" id="rsvp-name" name="name" class="form-input" placeholder="e.g. Thomas &amp; Mariamma" required />
             </div>
 
             <div class="form-group">
-              <label class="form-label">Will you be joining us? *</label>
+              <label class="form-label">Will you be joining us?</label>
               <div class="attendance-options">
                 <label class="attendance-option-card">
                   <input type="radio" name="attending" value="accept" checked />
-                  <div class="attendance-pill">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                    <span>Joyfully Accept</span>
-                  </div>
+                  <span>Joyfully Accept</span>
                 </label>
                 <label class="attendance-option-card">
                   <input type="radio" name="attending" value="decline" />
-                  <div class="attendance-pill">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                    <span>Regretfully Decline</span>
-                  </div>
+                  <span>Regretfully Decline</span>
                 </label>
               </div>
             </div>
@@ -275,27 +227,21 @@
               <div class="events-selection-options">
                 <label class="attendance-option-card">
                   <input type="radio" name="attending_events" value="both" checked />
-                  <div class="attendance-pill" style="justify-content: flex-start;">
-                    <span>✦ Both Celebrations (Engagement in Kasaragod &amp; Wedding in Thrissur)</span>
-                  </div>
+                  <span>Both Celebrations</span>
                 </label>
                 <label class="attendance-option-card">
                   <input type="radio" name="attending_events" value="wedding" />
-                  <div class="attendance-pill" style="justify-content: flex-start;">
-                    <span>✦ Holy Matrimony &amp; Celebration Lunch (Sept 21 · Thrissur)</span>
-                  </div>
+                  <span>Holy Matrimony &amp; Lunch (Sept 21 · Thrissur)</span>
                 </label>
                 <label class="attendance-option-card">
                   <input type="radio" name="attending_events" value="engagement" />
-                  <div class="attendance-pill" style="justify-content: flex-start;">
-                    <span>✦ The Engagement (Sept 12 · Kamballur, Kasaragod)</span>
-                  </div>
+                  <span>The Engagement (Sept 12 · Kasaragod)</span>
                 </label>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="rsvp-guests" class="form-label">Total Number of Guests</label>
+              <label for="rsvp-guests" class="form-label">Number of Guests</label>
               <input type="number" id="rsvp-guests" name="guests" class="form-input" min="1" max="8" value="1" />
             </div>
 
@@ -306,27 +252,23 @@
 
             <button type="submit" class="form-submit-btn">
               <span>Send RSVP</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             </button>
           </form>
         </div>
 
         <!-- RSVP Confirmation State -->
         <div id="rsvp-confirmation" class="rsvp-confirmation-state">
-          <div class="confirmation-icon">✦</div>
-          <h3 class="confirmation-title">Thank You, <span id="rsvp-guest-name">Guest</span>!</h3>
+          <h3 class="confirmation-title">Thank you, <span id="rsvp-guest-name">Guest</span></h3>
           <p class="confirmation-message">
             Your response has been received with warm love and gratitude. We look forward to celebrating these blessed moments together with you.
           </p>
 
           <div class="calendar-action-row">
-            <a id="btn-google-calendar" target="_blank" rel="noopener noreferrer" class="btn-primary">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              <span>Add to Google Calendar</span>
+            <a id="btn-google-calendar" target="_blank" rel="noopener noreferrer" class="text-link">
+              Add to Google Calendar
             </a>
-            <button id="btn-download-ics" class="btn-secondary">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-              <span>Download .ICS File</span>
+            <button id="btn-download-ics" class="text-link">
+              Download Calendar File
             </button>
           </div>
         </div>
@@ -334,26 +276,21 @@
     </section>
 
     <!-- ==========================================================================
-         9. WEDDING WISHES (GUESTBOOK)
+         WEDDING WISHES (GUESTBOOK)
          ========================================================================== -->
     <section class="section-wrapper" id="wishes">
       <div class="section-header reveal-on-scroll">
         <span class="section-eyebrow">Warm Words</span>
         <h2 class="section-title">Wedding Wishes</h2>
-        <p class="section-subtitle">Blessings, toasts, and heartfelt notes from family and friends</p>
       </div>
 
       <div class="wishes-header-action reveal-on-scroll">
-        <div style="font-family: var(--font-sans-accent); font-size: 0.85rem; color: var(--color-chartreuse-dark); text-transform: uppercase; letter-spacing: 0.15em;">
-          ✦ Guestbook Entries
-        </div>
-        <button id="open-wish-modal-btn" class="btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-          <span>Add Your Wish</span>
+        <button id="open-wish-modal-btn" class="text-link">
+          Leave a Wish
         </button>
       </div>
 
-      <div class="wishes-scroll-container" id="wishes-container">
+      <div class="wishes-column" id="wishes-container">
         <!-- Dynamically rendered wishes -->
       </div>
     </section>
@@ -365,63 +302,57 @@
   <div id="wish-modal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="wish-modal-title">
       <button class="modal-close-btn" id="close-wish-modal-btn" aria-label="Close dialog">✕</button>
-      <div class="section-header" style="margin-bottom: 1.5rem; text-align: left;">
-        <span class="section-eyebrow">Guestbook</span>
-        <h3 id="wish-modal-title" class="section-title" style="font-size: 1.8rem;">Leave a Blessing</h3>
-      </div>
+      <span class="section-eyebrow">Guestbook</span>
+      <h3 id="wish-modal-title" class="section-title modal-title-sm">Leave a Blessing</h3>
 
       <form id="wish-form">
         <div class="form-group">
-          <label for="wish-author-input" class="form-label">Your Name(s) *</label>
+          <label for="wish-author-input" class="form-label">Your Name(s)</label>
           <input type="text" id="wish-author-input" class="form-input" placeholder="e.g. Uncle Mathew &amp; Aunt Mary" required />
         </div>
         <div class="form-group">
-          <label for="wish-message-input" class="form-label">Your Wish or Blessing *</label>
+          <label for="wish-message-input" class="form-label">Your Wish or Blessing</label>
           <textarea id="wish-message-input" class="form-textarea" rows="4" placeholder="Share your blessings and prayers for Ashik &amp; Jerrin..." required></textarea>
         </div>
         <button type="submit" class="form-submit-btn">
           <span>Post Blessing</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
         </button>
       </form>
     </div>
   </div>
 
   <!-- ==========================================================================
-       ROTATING VINYL RECORD PLAYER (Turntable Widget)
+       IMAGE LIGHTBOX MODAL
        ========================================================================== -->
-  <div class="vinyl-player-container" id="vinyl-player" role="button" aria-label="Play Canon in D by Brooklyn Duo on Rotating Vinyl" tabindex="0">
-    <div class="vinyl-tooltip-badge">
-      <span class="vinyl-live-dot"></span>
-      <span class="vinyl-tooltip-text" id="vinyl-tooltip-text">Click to Play Vinyl</span>
+  <div id="image-lightbox-modal" class="lightbox-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo Preview">
+    <button class="lightbox-close-btn" id="close-lightbox-btn" aria-label="Close photo preview">✕</button>
+    <div class="lightbox-content-wrapper">
+      <img id="lightbox-img" src="" alt="Ashik &amp; Jerrin photo preview" class="lightbox-image" />
+      <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
-    <div class="vinyl-turntable-wrapper">
-      <div class="vinyl-tonearm">
-        <div class="tonearm-pivot"></div>
-        <div class="tonearm-bar"></div>
-        <div class="tonearm-head"></div>
-      </div>
-      <div class="vinyl-disc">
-        <div class="vinyl-grooves"></div>
-        <div class="vinyl-reflection"></div>
-        <div class="vinyl-center-label">
-          <span class="vinyl-center-monogram">A✦J</span>
-          <span class="vinyl-center-dot"></span>
-        </div>
+  </div>
+
+  <!-- ==========================================================================
+       MUSIC CONTROL — small fixed vinyl
+       ========================================================================== -->
+  <div class="vinyl-player-container" id="vinyl-player" role="button" aria-label="Play Canon in D by Brooklyn Duo" tabindex="0">
+    <div class="vinyl-disc">
+      <div class="vinyl-center-label">
+        <span class="vinyl-center-monogram">A&amp;J</span>
       </div>
     </div>
   </div>
 
   <!-- ==========================================================================
-       10. FOOTER
+       FOOTER
        ========================================================================== -->
   <footer class="site-footer">
-    <div class="footer-crest js-monogram">A &amp; J</div>
+    <div class="footer-names js-couple-names">Ashik &amp; Jerrin</div>
     <div class="footer-date js-hero-dates">12 &amp; 21 September 2026</div>
-    <p class="footer-note">“A promise made and a lifetime begun.”</p>
-    <div class="typographic-divider" style="margin: 1.5rem auto; max-width: 250px;">✦ ✧ ✦</div>
+    <p class="footer-note">A promise made and a lifetime begun.</p>
+    <div class="typographic-divider">✦</div>
     <p class="footer-credit">
-      Ashik &amp; Jerrin · Made with ❤️ for our beloved friends and family
+      Made with love for our beloved friends and family
     </p>
   </footer>
 

@@ -1,4 +1,3 @@
+.zcode/
+gui-test-screenshots/
 node_modules/
-.DS_Store
-Thumbs.db
-*.log
