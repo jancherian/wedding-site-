@@ -62,10 +62,11 @@ window.WEDDING_CONFIG = {
       subtitle: "A Promise Made",
       date: "Saturday, 12 September 2026",
       time: "11:30 AM",
-      venueName: "Kamballur, Kasaragod",
+      venueName: "St. Alphonsa Church, Kamballur, Kasaragod",
       badge: "Betrothal Ceremony",
       details: "Join us as we exchange our betrothal vows and blessings amidst family, love, and cherished traditions.",
-      venueTargetId: "venue-kamballur"
+      venueTargetId: "venue-kamballur",
+      mapsUrl: "https://www.google.com/maps/place/St+Alphonsa+Church,Kamballur/@12.2788933,75.3246468,811m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3ba4676fd037edb1:0xe8363140b688d176!8m2!3d12.2788933!4d75.3272217!16s%2Fg%2F1hm3hkd97"
     },
     {
       number: "02",
@@ -76,7 +77,8 @@ window.WEDDING_CONFIG = {
       venueName: "Our Lady of Lourdes Metropolitan Cathedral & Centenary Hall, Thrissur",
       badge: "Wedding & Feast",
       details: "The solemn nuptial ceremony will be solemnized at Our Lady of Lourdes Metropolitan Cathedral at 10:30 AM, followed immediately by a celebratory wedding banquet at Lourdes Centenary Hall.",
-      venueTargetId: "venue-thrissur"
+      venueTargetId: "venue-thrissur",
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Our+Lady+de+Lourdes+Metropolitan+Cathedral+East+Fort+Thrissur"
     }
   ],
 
@@ -84,13 +86,13 @@ window.WEDDING_CONFIG = {
   venues: [
     {
       id: "venue-kamballur",
-      name: "The Engagement Ceremony",
+      name: "St. Alphonsa Church",
       type: "Betrothal — Sept 12, 2026",
       time: "11:30 AM",
       address: "Kamballur, Kasaragod, Kerala",
       image: "assets/images/venue-kamballur-church.jpg",
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kamballur+Kasaragod+Kerala",
-      features: ["Betrothal Service", "Traditional Blessings", "Kamballur, Kasaragod"]
+      mapsUrl: "https://www.google.com/maps/place/St+Alphonsa+Church,Kamballur/@12.2788933,75.3246468,811m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3ba4676fd037edb1:0xe8363140b688d176!8m2!3d12.2788933!4d75.3272217!16s%2Fg%2F1hm3hkd97",
+      features: ["Betrothal Service", "Traditional Blessings", "St. Alphonsa Church, Kamballur"]
     },
     {
       id: "venue-thrissur",

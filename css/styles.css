@@ -645,8 +645,16 @@ button {
   font-size: 1.1rem;
 }
 
-.chapter-row .text-link {
+.chapter-links {
   margin-top: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 2.2rem;
+}
+
+.chapter-links .text-link {
+  margin-top: 0;
 }
 
 /* ==========================================================================

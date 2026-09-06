@@ -102,7 +102,10 @@
             </p>
             <p class="chapter-venue"><em>${item.venueName}</em></p>
             <p class="chapter-desc">${item.details}</p>
-            <button class="text-link js-scroll-to-venue" data-target="${item.venueTargetId}">View Venue &amp; Directions</button>
+            <div class="chapter-links">
+              <button class="text-link js-scroll-to-venue" data-target="${item.venueTargetId}">View Venue</button>
+              ${item.mapsUrl ? `<a class="text-link" href="${item.mapsUrl}" target="_blank" rel="noopener noreferrer">Get Directions</a>` : ''}
+            </div>
           </div>
         </article>
       `).join('');
@@ -308,7 +311,7 @@
           if (countdownTargetLabel) {
             countdownTargetLabel.textContent = currentCountdownEvent === 'engagement'
               ? "Until The Engagement · 12 September 2026 (Kamballur)"
-              : "Until The Holy Matrimony & Celebration Lunch · 21 September 2026 (Thrissur)";
+              : "Until The Holy Matrimony · 21 September 2026 (Thrissur)";
           }
           update();
         });
