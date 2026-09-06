@@ -1,33 +1,33 @@
 /* ==========================================================================
    ASHIK & JERRIN — Editorial / Letterpress Invitation
    Fonts: Cormorant Garamond (voice) + Inter (labels only)
-   Palette: dusty rose #DFC0BC · chartreuse #8E9F36 · burgundy #6E1F2A · espresso #2A1E1A
+   Palette: beige-rose #E2C9BE · chartreuse #8A9B32 · burgundy #6E1F2A · espresso #2A1E1A
    ========================================================================== */
 
 :root {
-  --color-cream: #DFC0BC;
-  --color-cream-raised: #E8CAC6;
-  --color-cream-light: #F4E2DE;
-  --color-chartreuse: #8E9F36;
-  --color-chartreuse-dark: #526117;
+  --color-cream: #E2C9BE;
+  --color-cream-raised: #ECE0D8;
+  --color-cream-light: #F7EFEB;
+  --color-chartreuse: #8A9B32;
+  --color-chartreuse-dark: #4D5C14;
   --color-burgundy: #6E1F2A;
   --color-burgundy-soft: #8A3A45;
   --color-espresso: #2A1E1A;
-  --color-espresso-soft: #55443E;
-  --color-hairline: rgba(42, 30, 26, 0.16);
+  --color-espresso-soft: #54443E;
+  --color-hairline: rgba(42, 30, 26, 0.14);
 
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Inter', 'Helvetica Neue', sans-serif;
 
-  /* Subtle handmade paper grain texture (SVG fractal noise with organic tone) */
-  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16  0 0 0 0 0.12  0 0 0 0 0.10  0 0 0 0 0.038 0'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23grain)'/%3E%3C/svg%3E");
+  /* Barely-perceptible authentic fine paper tooth (low contrast, no digital static) */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.18  0 0 0 0 0.14  0 0 0 0 0.12  0 0 0 0 0.007 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)'/%3E%3C/svg%3E");
 
-  /* Gentle atmospheric watercolor wash variations across the layout */
+  /* Gentle atmospheric warm watercolor wash variations across the layout */
   --watercolor-wash:
-    radial-gradient(ellipse 80% 55% at 8% 12%, rgba(250, 235, 232, 0.45) 0%, transparent 60%),
-    radial-gradient(ellipse 65% 50% at 92% 35%, rgba(206, 168, 163, 0.32) 0%, transparent 58%),
-    radial-gradient(ellipse 80% 65% at 16% 75%, rgba(198, 160, 155, 0.28) 0%, transparent 68%),
-    radial-gradient(ellipse 70% 50% at 85% 92%, rgba(248, 232, 228, 0.42) 0%, transparent 62%);
+    radial-gradient(ellipse 80% 55% at 8% 10%, rgba(248, 240, 235, 0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 50% at 92% 35%, rgba(214, 186, 175, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 65% at 16% 75%, rgba(210, 180, 170, 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 85% 92%, rgba(250, 242, 238, 0.42) 0%, transparent 60%);
 
   --space-section: clamp(5rem, 12vw, 9rem);
   --max-width: 1100px;
@@ -62,6 +62,8 @@ body {
 img {
   max-width: 100%;
   display: block;
+  position: relative;
+  z-index: 2;
 }
 
 button {
@@ -153,7 +155,7 @@ button {
 }
 
 .site-header.scrolled {
-  background-color: rgba(223, 192, 188, 0.94);
+  background-color: rgba(226, 201, 190, 0.95);
   backdrop-filter: blur(8px);
   padding: 0.85rem 0;
 }
@@ -350,11 +352,11 @@ button {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(42, 30, 26, 0.45) 0%,
-    rgba(42, 30, 26, 0.18) 35%,
-    rgba(42, 30, 26, 0.42) 68%,
-    rgba(42, 30, 26, 0.70) 84%,
-    rgba(223, 192, 188, 0.82) 95%,
+    rgba(35, 25, 20, 0.38) 0%,
+    rgba(35, 25, 20, 0.10) 35%,
+    rgba(35, 25, 20, 0.35) 68%,
+    rgba(35, 25, 20, 0.62) 86%,
+    rgba(226, 201, 190, 0.82) 96%,
     var(--color-cream) 100%
   );
 }
@@ -365,12 +367,12 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 130px;
+  height: 110px;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(223, 192, 188, 0.35) 40%,
-    rgba(223, 192, 188, 0.85) 75%,
+    rgba(226, 201, 190, 0.25) 35%,
+    rgba(226, 201, 190, 0.75) 70%,
     var(--color-cream) 100%
   );
   pointer-events: none;
@@ -459,10 +461,18 @@ button {
   align-items: center;
 }
 
+.story-photo-frame {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 24px rgba(42, 30, 26, 0.08);
+}
+
 .story-photo-frame img {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  position: relative;
+  z-index: 2;
 }
 
 .story-text {
@@ -707,10 +717,18 @@ button {
   order: 2;
 }
 
+.venue-image-wrapper {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 24px rgba(42, 30, 26, 0.08);
+}
+
 .venue-image-wrapper img {
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  position: relative;
+  z-index: 2;
 }
 
 .venue-name {
