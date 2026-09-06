@@ -1,33 +1,30 @@
 /* ==========================================================================
    ASHIK & JERRIN — Editorial / Letterpress Invitation
    Fonts: Cormorant Garamond (voice) + Inter (labels only)
-   Palette: beige-rose #E2C9BE · chartreuse #8A9B32 · burgundy #6E1F2A · espresso #2A1E1A
+   Palette: champagne #F4EBE1 · olive #7A8E2E · burgundy #6E1F2A · espresso #2A1E1A
    ========================================================================== */
 
 :root {
-  --color-cream: #E2C9BE;
-  --color-cream-raised: #ECE0D8;
-  --color-cream-light: #F7EFEB;
-  --color-chartreuse: #8A9B32;
-  --color-chartreuse-dark: #4D5C14;
+  --color-cream: #F4EBE1;
+  --color-cream-raised: #FAF5EE;
+  --color-cream-light: #FDFBF7;
+  --color-chartreuse: #7A8E2E;
+  --color-chartreuse-dark: #4A5B18;
   --color-burgundy: #6E1F2A;
   --color-burgundy-soft: #8A3A45;
   --color-espresso: #2A1E1A;
-  --color-espresso-soft: #54443E;
-  --color-hairline: rgba(42, 30, 26, 0.14);
+  --color-espresso-soft: #5A4C46;
+  --color-hairline: rgba(42, 30, 26, 0.12);
 
   --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'Inter', 'Helvetica Neue', sans-serif;
 
-  /* Barely-perceptible authentic fine paper tooth (low contrast, no digital static) */
-  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.18  0 0 0 0 0.14  0 0 0 0 0.12  0 0 0 0 0.007 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)'/%3E%3C/svg%3E");
-
   /* Gentle atmospheric warm watercolor wash variations across the layout */
   --watercolor-wash:
-    radial-gradient(ellipse 80% 55% at 8% 10%, rgba(248, 240, 235, 0.45) 0%, transparent 60%),
-    radial-gradient(ellipse 65% 50% at 92% 35%, rgba(214, 186, 175, 0.22) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 65% at 16% 75%, rgba(210, 180, 170, 0.18) 0%, transparent 65%),
-    radial-gradient(ellipse 70% 50% at 85% 92%, rgba(250, 242, 238, 0.42) 0%, transparent 60%);
+    radial-gradient(ellipse 90% 60% at 5% 8%, rgba(255, 252, 248, 0.65) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 95% 35%, rgba(235, 222, 208, 0.32) 0%, transparent 55%),
+    radial-gradient(ellipse 85% 65% at 12% 75%, rgba(238, 225, 212, 0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 75% 55% at 88% 92%, rgba(255, 250, 245, 0.55) 0%, transparent 60%);
 
   --space-section: clamp(5rem, 12vw, 9rem);
   --max-width: 1100px;
@@ -50,13 +47,27 @@ html {
 
 body {
   background-color: var(--color-cream);
-  background-image: var(--paper-grain), var(--watercolor-wash);
+  background-image: var(--watercolor-wash);
   background-attachment: fixed;
   color: var(--color-espresso);
   font-family: var(--font-serif);
   font-size: 1.125rem;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Off-screen audio player container */
+.audio-sandbox,
+#youtube-audio-frame {
+  position: fixed !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  z-index: -9999 !important;
 }
 
 img {
@@ -155,8 +166,9 @@ button {
 }
 
 .site-header.scrolled {
-  background-color: rgba(226, 201, 190, 0.95);
-  backdrop-filter: blur(8px);
+  background-color: rgba(244, 235, 225, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 12px rgba(42, 30, 26, 0.06);
   padding: 0.85rem 0;
 }
 
@@ -284,7 +296,7 @@ button {
   inset: 0;
   z-index: 99;
   background: var(--color-cream);
-  background-image: var(--paper-grain), var(--watercolor-wash);
+  background-image: var(--watercolor-wash);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -352,11 +364,11 @@ button {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(35, 25, 20, 0.38) 0%,
-    rgba(35, 25, 20, 0.10) 35%,
-    rgba(35, 25, 20, 0.35) 68%,
-    rgba(35, 25, 20, 0.62) 86%,
-    rgba(226, 201, 190, 0.82) 96%,
+    rgba(25, 15, 12, 0.52) 0%,
+    rgba(25, 15, 12, 0.16) 28%,
+    rgba(25, 15, 12, 0.45) 58%,
+    rgba(25, 15, 12, 0.72) 80%,
+    rgba(244, 235, 225, 0.88) 95%,
     var(--color-cream) 100%
   );
 }
@@ -367,12 +379,12 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 110px;
+  height: 140px;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(226, 201, 190, 0.25) 35%,
-    rgba(226, 201, 190, 0.75) 70%,
+    rgba(244, 235, 225, 0.3) 35%,
+    rgba(244, 235, 225, 0.85) 75%,
     var(--color-cream) 100%
   );
   pointer-events: none;
@@ -384,55 +396,60 @@ button {
   z-index: 3;
   padding: 0 1.5rem 14vh;
   color: #fff;
-  text-shadow: 0 1px 3px rgba(42, 30, 26, 0.35), 0 4px 26px rgba(42, 30, 26, 0.3);
 }
 
 .hero-eyebrow {
   font-family: var(--font-sans);
   font-size: 0.82rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.95);
+  color: #FAF5EE;
+  text-shadow: 0 1px 4px rgba(25, 15, 12, 0.75), 0 2px 14px rgba(25, 15, 12, 0.5);
   margin-bottom: 1.6rem;
 }
 
 .hero-couple-names {
   font-family: var(--font-serif);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(3rem, 9vw, 6.5rem);
   line-height: 1.05;
   letter-spacing: 0.01em;
-  color: #fff;
+  color: #FFFFFF;
+  text-shadow: 0 2px 6px rgba(25, 15, 12, 0.7), 0 8px 36px rgba(25, 15, 12, 0.55);
 }
 
 .hero-couple-names .ampersand {
   font-style: italic;
   font-weight: 400;
-  color: var(--color-chartreuse);
+  color: #D4E082;
   margin: 0 0.15em;
+  text-shadow: 0 2px 6px rgba(25, 15, 12, 0.75);
 }
 
 .hero-rule {
   width: 72px;
   height: 1px;
-  background: var(--color-burgundy-soft);
+  background: rgba(250, 245, 238, 0.65);
+  box-shadow: 0 1px 4px rgba(25, 15, 12, 0.5);
   margin: 2.2rem auto;
 }
 
 .hero-date-line {
   font-family: var(--font-serif);
   font-size: clamp(1.2rem, 2.8vw, 1.55rem);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #fff;
+  color: #FFFFFF;
+  text-shadow: 0 1px 5px rgba(25, 15, 12, 0.75), 0 3px 18px rgba(25, 15, 12, 0.45);
 }
 
 .hero-location-line {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.92);
+  color: #F4EBE1;
+  text-shadow: 0 1px 5px rgba(25, 15, 12, 0.75), 0 3px 18px rgba(25, 15, 12, 0.45);
   margin-top: 0.6rem;
 }
 
@@ -1208,16 +1225,16 @@ button {
   }
 
   .hero-section {
-    min-height: 64svh;
-    min-height: max(64svh, 480px);
+    min-height: 66svh;
+    min-height: max(66svh, 500px);
   }
 
   .hero-section::after {
-    height: 85px;
+    height: 95px;
   }
 
   .hero-content {
-    padding: 5.5rem 1.5rem 2.8rem;
+    padding: 5.5rem 1.5rem 3.2rem;
   }
 
   .hero-background-img {

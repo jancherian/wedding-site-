@@ -361,16 +361,19 @@
           'controls': 0,
           'disablekb': 1,
           'fs': 0,
-          'rel': 0
+          'rel': 0,
+          'loop': 1
         };
         if (originVal) {
           playerVars.origin = originVal;
         }
 
+        const videoId = config.music?.youtubeId || 'QgaTQ5-XfMM';
+
         ytPlayer = new YT.Player('youtube-audio-frame', {
-          height: '100',
-          width: '100',
-          videoId: 'Ptk_1Dc2iPY',
+          height: '1',
+          width: '1',
+          videoId: videoId,
           playerVars: playerVars,
           events: {
             'onReady': function () {
@@ -386,7 +389,7 @@
             'onError': function (err) {
               console.log('YouTube note: fallback to audio synth', err);
               if (isMusicPlaying) {
-                startSynthCanonInD();
+                startSynthMusic();
               }
             }
           }
@@ -417,7 +420,7 @@
     }
 
     if (!started) {
-      startSynthCanonInD();
+      startSynthMusic();
     }
   }
 
@@ -429,7 +432,7 @@
         console.warn(e);
       }
     }
-    stopSynthCanonInD();
+    stopSynthMusic();
     setMusicPlayingState(false);
   }
 
@@ -444,35 +447,35 @@
     }
 
     if (vinylTooltipText) {
-      vinylTooltipText.textContent = playing ? "Playing: Canon in D" : "Click to Play Vinyl";
+      vinylTooltipText.textContent = playing ? "Playing: A Thousand Years" : "Click to Play Vinyl";
     }
 
     if (heroMusicBtn) {
       const btnText = heroMusicBtn.querySelector('.js-hero-music-text');
       if (btnText) {
-        btnText.textContent = playing ? "Pause Music" : "Play Canon in D";
+        btnText.textContent = playing ? "Pause Music" : "Play A Thousand Years";
       }
     }
   }
 
-  // Cello & Piano Web Audio Synthesis
-  const canonInDSequence = [
-    { bass: 146.83, cello: 293.66, melody: 587.33, chord: [369.99, 440.00] },
-    { bass: 146.83, cello: 293.66, melody: 554.37, chord: [369.99, 440.00] },
-    { bass: 110.00, cello: 220.00, melody: 440.00, chord: [277.18, 329.63] },
-    { bass: 110.00, cello: 220.00, melody: 493.88, chord: [277.18, 329.63] },
-    { bass: 123.47, cello: 246.94, melody: 493.88, chord: [293.66, 369.99] },
-    { bass: 123.47, cello: 246.94, melody: 440.00, chord: [293.66, 369.99] },
-    { bass: 92.50,  cello: 185.00, melody: 369.99, chord: [220.00, 277.18] },
-    { bass: 92.50,  cello: 185.00, melody: 329.63, chord: [220.00, 277.18] },
-    { bass: 98.00,  cello: 196.00, melody: 392.00, chord: [246.94, 293.66] },
-    { bass: 98.00,  cello: 196.00, melody: 369.99, chord: [246.94, 293.66] },
-    { bass: 146.83, cello: 293.66, melody: 293.66, chord: [369.99, 440.00] },
-    { bass: 146.83, cello: 293.66, melody: 329.63, chord: [369.99, 440.00] },
-    { bass: 98.00,  cello: 196.00, melody: 392.00, chord: [246.94, 293.66] },
-    { bass: 98.00,  cello: 196.00, melody: 440.00, chord: [246.94, 293.66] },
-    { bass: 110.00, cello: 220.00, melody: 554.37, chord: [277.18, 329.63] },
-    { bass: 110.00, cello: 220.00, melody: 587.33, chord: [277.18, 329.63] }
+  // Cello & Piano Web Audio Synthesis — A Thousand Years (ThePianoGuys / Christina Perri)
+  const aThousandYearsSequence = [
+    { bass: 116.54, cello: 233.08, melody: 466.16, chord: [293.66, 349.23] }, // Bb major (Bb3, D4, F4, Bb4)
+    { bass: 116.54, cello: 233.08, melody: 523.25, chord: [293.66, 349.23] }, // C5
+    { bass: 116.54, cello: 233.08, melody: 587.33, chord: [293.66, 349.23] }, // D5
+    { bass: 116.54, cello: 233.08, melody: 523.25, chord: [293.66, 349.23] }, // C5
+    { bass: 87.31,  cello: 174.61, melody: 440.00, chord: [261.63, 349.23] }, // F major (F3, C4, F4, A4)
+    { bass: 87.31,  cello: 174.61, melody: 349.23, chord: [261.63, 349.23] }, // F4
+    { bass: 87.31,  cello: 174.61, melody: 392.00, chord: [261.63, 349.23] }, // G4
+    { bass: 87.31,  cello: 174.61, melody: 440.00, chord: [261.63, 349.23] }, // A4
+    { bass: 98.00,  cello: 196.00, melody: 392.00, chord: [233.08, 293.66] }, // G minor (G3, Bb3, D4, G4)
+    { bass: 98.00,  cello: 196.00, melody: 349.23, chord: [233.08, 293.66] }, // F4
+    { bass: 98.00,  cello: 196.00, melody: 293.66, chord: [233.08, 293.66] }, // D4
+    { bass: 98.00,  cello: 196.00, melody: 349.23, chord: [233.08, 293.66] }, // F4
+    { bass: 77.78,  cello: 155.56, melody: 311.13, chord: [233.08, 311.13] }, // Eb major (Eb3, Bb3, Eb4, G4)
+    { bass: 77.78,  cello: 155.56, melody: 349.23, chord: [233.08, 311.13] }, // F4
+    { bass: 77.78,  cello: 155.56, melody: 392.00, chord: [233.08, 311.13] }, // G4
+    { bass: 77.78,  cello: 155.56, melody: 349.23, chord: [233.08, 311.13] }  // F4
   ];
 
   function playSynthNote(freq, type, gainVal, decay) {
@@ -486,7 +489,7 @@
       osc.frequency.setValueAtTime(freq, synthAudioCtx.currentTime);
 
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(type === 'sawtooth' ? 900 : 1500, synthAudioCtx.currentTime);
+      filter.frequency.setValueAtTime(type === 'sawtooth' ? 800 : 1400, synthAudioCtx.currentTime);
 
       gain.gain.setValueAtTime(0.0001, synthAudioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(gainVal, synthAudioCtx.currentTime + 0.08);
@@ -503,30 +506,30 @@
     }
   }
 
-  function playCanonStep() {
-    const item = canonInDSequence[noteIndex % canonInDSequence.length];
+  function playSynthStep() {
+    const item = aThousandYearsSequence[noteIndex % aThousandYearsSequence.length];
 
     if (item.bass) {
-      playSynthNote(item.bass, 'sawtooth', 0.05, 2.4);
+      playSynthNote(item.bass, 'sawtooth', 0.05, 2.6);
     }
     if (item.cello) {
-      playSynthNote(item.cello, 'triangle', 0.06, 2.0);
+      playSynthNote(item.cello, 'triangle', 0.06, 2.2);
     }
     if (item.melody) {
-      playSynthNote(item.melody, 'sine', 0.09, 1.8);
+      playSynthNote(item.melody, 'sine', 0.09, 1.9);
     }
     if (item.chord) {
       item.chord.forEach((note, i) => {
         setTimeout(() => {
-          playSynthNote(note, 'sine', 0.04, 1.4);
+          playSynthNote(note, 'sine', 0.04, 1.5);
         }, (i + 1) * 110);
       });
     }
 
-    noteIndex = (noteIndex + 1) % canonInDSequence.length;
+    noteIndex = (noteIndex + 1) % aThousandYearsSequence.length;
   }
 
-  function startSynthCanonInD() {
+  function startSynthMusic() {
     if (!synthAudioCtx) {
       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
       synthAudioCtx = new AudioContextClass();
@@ -534,11 +537,11 @@
     if (synthAudioCtx.state === 'suspended') {
       synthAudioCtx.resume();
     }
-    playCanonStep();
-    synthInterval = setInterval(playCanonStep, 680);
+    playSynthStep();
+    synthInterval = setInterval(playSynthStep, 720);
   }
 
-  function stopSynthCanonInD() {
+  function stopSynthMusic() {
     if (synthInterval) {
       clearInterval(synthInterval);
       synthInterval = null;

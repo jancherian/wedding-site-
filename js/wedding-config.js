@@ -39,12 +39,12 @@ window.WEDDING_CONFIG = {
     tagline: "invite you to share in two beautiful moments, a promise made and a lifetime begun."
   },
 
-  // Audio / Music (Canon in D by Brooklyn Duo - https://youtu.be/Ptk_1Dc2iPY)
+  // Audio / Music (A Thousand Years by ThePianoGuys - https://music.youtube.com/watch?v=QgaTQ5-XfMM)
   music: {
-    title: "Canon in D (Cello & Piano)",
-    artist: "Brooklyn Duo",
-    youtubeId: "Ptk_1Dc2iPY",
-    youtubeUrl: "https://youtu.be/Ptk_1Dc2iPY"
+    title: "A Thousand Years (Piano & Cello Cover)",
+    artist: "ThePianoGuys",
+    youtubeId: "QgaTQ5-XfMM",
+    youtubeUrl: "https://music.youtube.com/watch?v=QgaTQ5-XfMM"
   },
 
   // A Note from the Couple

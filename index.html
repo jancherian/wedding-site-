@@ -26,8 +26,10 @@
 </head>
 <body>
 
-  <!-- Hidden YouTube Audio Player for Brooklyn Duo - Canon in D -->
-  <div id="youtube-audio-frame" style="position: fixed; top: -9999px; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;" aria-hidden="true"></div>
+  <!-- Off-Screen YouTube Audio Streamer for ThePianoGuys - A Thousand Years -->
+  <div class="audio-sandbox" aria-hidden="true">
+    <div id="youtube-audio-frame"></div>
+  </div>
 
   <!-- ==========================================================================
        HEADER & NAVIGATION
@@ -303,7 +305,7 @@
   <!-- ==========================================================================
        MUSIC CONTROL — small fixed vinyl
        ========================================================================== -->
-  <div class="vinyl-player-container" id="vinyl-player" role="button" aria-label="Play Canon in D by Brooklyn Duo" tabindex="0">
+  <div class="vinyl-player-container" id="vinyl-player" role="button" aria-label="Play A Thousand Years by ThePianoGuys" tabindex="0">
     <div class="vinyl-disc">
       <div class="vinyl-center-label">
         <span class="vinyl-center-monogram">A&amp;J</span>
