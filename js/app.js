@@ -356,19 +356,19 @@
     window.onYouTubeIframeAPIReady = function () {
       try {
         const originVal = window.location.protocol.startsWith('http') ? window.location.origin : undefined;
+        const videoId = config.music?.youtubeId || 'QgaTQ5-XfMM';
         const playerVars = {
           'playsinline': 1,
           'controls': 0,
           'disablekb': 1,
           'fs': 0,
           'rel': 0,
-          'loop': 1
+          'loop': 1,
+          'playlist': videoId
         };
         if (originVal) {
           playerVars.origin = originVal;
         }
-
-        const videoId = config.music?.youtubeId || 'QgaTQ5-XfMM';
 
         ytPlayer = new YT.Player('youtube-audio-frame', {
           height: '1',
@@ -382,7 +382,19 @@
             'onStateChange': function (event) {
               if (window.YT && event.data === YT.PlayerState.PLAYING) {
                 setMusicPlayingState(true);
-              } else if (window.YT && (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED)) {
+              } else if (window.YT && event.data === YT.PlayerState.ENDED) {
+                // Loop continuously when track reaches the end
+                if (isMusicPlaying && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                  try {
+                    ytPlayer.seekTo(0);
+                    ytPlayer.playVideo();
+                  } catch (e) {
+                    console.warn('YouTube loop restart note:', e);
+                  }
+                } else {
+                  setMusicPlayingState(false);
+                }
+              } else if (window.YT && event.data === YT.PlayerState.PAUSED) {
                 setMusicPlayingState(false);
               }
             },
@@ -393,6 +405,11 @@
               }
             }
           }
+        });
+
+        // Also ensure any HTML5 audio tags have loop enabled
+        document.querySelectorAll('audio').forEach(audio => {
+          audio.loop = true;
         });
       } catch (err) {
         console.warn('YouTube player init note:', err);

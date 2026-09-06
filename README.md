@@ -11,7 +11,7 @@ A bespoke single-page wedding website designed around the **2026 Chartreuse & Bu
    - **Location**: Kamballur, Kasaragod, Kerala
    - **Theme**: *“A Promise Made”*
 
-2. **The Holy Matrimony & Celebration Lunch**
+2. **The Holy Matrimony**
    - **Date**: Monday, 21 September 2026
    - **Ceremony**: 10:30 AM at **Our Lady of Lourdes Metropolitan Cathedral**, East Fort, Thrissur
    - **Celebration Lunch**: Following the ceremony at **Lourdes Centenary Hall**, East Fort, Thrissur

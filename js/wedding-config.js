@@ -3,7 +3,7 @@
  * 
  * Two Celebrations:
  * 1. The Engagement (12 September 2026, Kamballur, Kasaragod)
- * 2. The Holy Matrimony & Celebration Lunch (21 September 2026, East Fort, Thrissur)
+ * 2. The Holy Matrimony (21 September 2026, East Fort, Thrissur)
  */
 
 window.WEDDING_CONFIG = {
@@ -26,7 +26,7 @@ window.WEDDING_CONFIG = {
     engagementTime: "11:30 AM",
     engagementLocation: "Kamballur, Kasaragod",
 
-    // Wedding & Celebration Lunch
+    // Wedding (Holy Matrimony)
     weddingDateISO: "2026-09-21T10:30:00+05:30",
     weddingEndISO: "2026-09-21T15:00:00+05:30",
     weddingDisplayDate: "Monday, 21 September 2026",
@@ -70,7 +70,7 @@ window.WEDDING_CONFIG = {
     },
     {
       number: "02",
-      title: "The Holy Matrimony & Celebration Lunch",
+      title: "The Holy Matrimony",
       subtitle: "A Lifetime Begun",
       date: "Monday, 21 September 2026",
       time: "10:30 AM (Ceremony) · Followed by Celebration Lunch",
@@ -97,7 +97,7 @@ window.WEDDING_CONFIG = {
     {
       id: "venue-thrissur",
       name: "Our Lady of Lourdes Metropolitan Cathedral",
-      type: "Holy Matrimony & Celebration Lunch — Sept 21, 2026",
+      type: "Holy Matrimony — Sept 21, 2026",
       time: "10:30 AM · Followed by Lunch at Lourdes Centenary Hall",
       address: "East Fort, Thrissur, Kerala",
       image: "assets/images/venue-lourdes-cathedral.jpg",
