@@ -5,9 +5,10 @@
    ========================================================================== */
 
 :root {
-  --color-cream: #FBF7EE;
+  --color-cream: #E3B8BB;
+  --color-cream-raised: #EBC6C9;
   --color-chartreuse: #9CAF3E;
-  --color-chartreuse-dark: #7A8A2E;
+  --color-chartreuse-dark: #5C6A1E;
   --color-burgundy: #6E1F2A;
   --color-burgundy-soft: #8A3A45;
   --color-espresso: #2A1E1A;
