@@ -399,29 +399,8 @@ button {
     rgba(42, 30, 26, 0.36) 0%,
     rgba(42, 30, 26, 0.15) 38%,
     rgba(42, 30, 26, 0.40) 68%,
-    rgba(42, 30, 26, 0.54) 86%,
-    rgba(244, 235, 225, 0.70) 96%,
-    var(--color-cream) 100%
+    rgba(42, 30, 26, 0.54) 100%
   );
-}
-
-.hero-section::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(244, 235, 225, 0.12) 25%,
-    rgba(244, 235, 225, 0.45) 60%,
-    rgba(244, 235, 225, 0.82) 85%,
-    var(--color-cream) 100%
-  );
-  pointer-events: none;
-  z-index: 3;
 }
 
 .hero-content {
