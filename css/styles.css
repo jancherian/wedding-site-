@@ -70,8 +70,6 @@ body {
 img {
   max-width: 100%;
   display: block;
-  position: relative;
-  z-index: 2;
 }
 
 button {
@@ -379,26 +377,29 @@ button {
 .hero-background-wrapper {
   position: absolute;
   inset: 0;
+  z-index: 1;
 }
 
 .hero-background-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
+  z-index: 1;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background: linear-gradient(
     to bottom,
     rgba(42, 30, 26, 0.38) 0%,
-    rgba(42, 30, 26, 0.16) 38%,
-    rgba(42, 30, 26, 0.46) 70%,
-    rgba(42, 30, 26, 0.65) 86%,
-    rgba(244, 235, 225, 0.82) 96%,
-    var(--color-cream) 100%
+    rgba(42, 30, 26, 0.18) 42%,
+    rgba(42, 30, 26, 0.48) 74%,
+    rgba(42, 30, 26, 0.68) 100%
   );
 }
 
@@ -408,21 +409,20 @@ button {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 110px;
+  height: 80px;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(244, 235, 225, 0.25) 35%,
-    rgba(244, 235, 225, 0.8) 75%,
+    rgba(244, 235, 225, 0.3) 40%,
     var(--color-cream) 100%
   );
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   padding: 0 1.5rem 14vh;
   color: #fff;
 }
