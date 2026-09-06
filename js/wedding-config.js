@@ -109,7 +109,16 @@ window.WEDDING_CONFIG = {
   // Integrations
   integrations: {
     googleAppsScriptUrl: "",
-    firebaseFirestoreConfig: null
+    formspreeEndpoint: "https://formspree.io/f/mzebaqwa",
+    firebaseConfig: {
+      apiKey: "AIzaSyAN1TkGG_b51vsshz4DMnq-oNe9NkiSQ0I",
+      authDomain: "ashik-jerrin-wedding.firebaseapp.com",
+      projectId: "ashik-jerrin-wedding",
+      storageBucket: "ashik-jerrin-wedding.firebasestorage.app",
+      messagingSenderId: "758124599765",
+      appId: "1:758124599765:web:8de0cdf0012ce35577c55c",
+      measurementId: "G-CCKQ3XJTGQ"
+    }
   },
 
   // Initial Guestbook Wishes

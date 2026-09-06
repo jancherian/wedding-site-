@@ -566,12 +566,42 @@
   }
 
   /* ==========================================================================
+     FIREBASE FIRESTORE INITIALIZATION
+     ========================================================================== */
+  let db = null;
+
+  function getFirestoreDb() {
+    if (db) return db;
+    if (window.firebase && config.integrations?.firebaseConfig) {
+      try {
+        if (!firebase.apps || !firebase.apps.length) {
+          firebase.initializeApp(config.integrations.firebaseConfig);
+        }
+        db = firebase.firestore();
+      } catch (err) {
+        console.warn('Firebase initialization error:', err);
+      }
+    }
+    return db;
+  }
+
+  /* ==========================================================================
      7. RSVP & CALENDAR BUILDER
      ========================================================================== */
   function initRSVP() {
     if (!rsvpForm) return;
 
-    rsvpForm.addEventListener('submit', function (e) {
+    // Error feedback message element
+    let rsvpErrorEl = document.getElementById('rsvp-error-msg');
+    if (!rsvpErrorEl) {
+      rsvpErrorEl = document.createElement('p');
+      rsvpErrorEl.id = 'rsvp-error-msg';
+      rsvpErrorEl.className = 'form-error-msg';
+      rsvpErrorEl.style.cssText = 'color: #9E2A2B; font-size: 0.9rem; margin-top: 0.8rem; display: none; text-align: center;';
+      rsvpForm.appendChild(rsvpErrorEl);
+    }
+
+    rsvpForm.addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const nameInput = document.getElementById('rsvp-name');
@@ -579,6 +609,8 @@
       const eventSelection = document.querySelector('input[name="attending_events"]:checked');
       const guestsSelect = document.getElementById('rsvp-guests');
       const messageInput = document.getElementById('rsvp-message');
+      const submitBtn = rsvpForm.querySelector('.form-submit-btn');
+      const submitBtnSpan = submitBtn ? submitBtn.querySelector('span') : null;
 
       const name = nameInput ? nameInput.value.trim() : '';
       const attending = attendingRadio ? attendingRadio.value : 'accept';
@@ -591,40 +623,88 @@
         return;
       }
 
+      // Reset error state & display loading button state
+      rsvpErrorEl.style.display = 'none';
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitBtnSpan) submitBtnSpan.textContent = 'Sending RSVP...';
+
       const rsvpData = {
         name,
-        attending,
+        attending, // 'accept' | 'decline'
         eventChoice,
-        guests,
+        guests: parseInt(guests, 10) || 1,
         message,
-        submittedAt: new Date().toISOString()
+        createdAt: (window.firebase && firebase.firestore?.FieldValue)
+          ? firebase.firestore.FieldValue.serverTimestamp()
+          : new Date().toISOString()
       };
 
       try {
-        const stored = JSON.parse(localStorage.getItem('wedding_rsvp_submissions') || '[]');
-        stored.push(rsvpData);
-        localStorage.setItem('wedding_rsvp_submissions', JSON.stringify(stored));
+        // 1. Write to Firebase Firestore (collection: 'rsvps')
+        const firestoreDb = getFirestoreDb();
+        if (firestoreDb) {
+          await firestoreDb.collection('rsvps').add(rsvpData);
+        }
+
+        // 2. Submit to Formspree for instant email notification
+        const formspreeUrl = config.integrations?.formspreeEndpoint;
+        if (formspreeUrl) {
+          try {
+            await fetch(formspreeUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                name,
+                attending: attending === 'accept' ? 'Joyfully Accept' : 'Regretfully Decline',
+                eventSelection: eventChoice,
+                guests,
+                message: message || '(No additional message)',
+                submittedAt: new Date().toLocaleString()
+              })
+            });
+          } catch (formspreeErr) {
+            console.warn('Formspree notification note:', formspreeErr);
+          }
+        }
+
+        // 3. Local offline backup
+        try {
+          const stored = JSON.parse(localStorage.getItem('wedding_rsvp_submissions') || '[]');
+          stored.push({ ...rsvpData, submittedAt: new Date().toISOString() });
+          localStorage.setItem('wedding_rsvp_submissions', JSON.stringify(stored));
+        } catch (err) {
+          console.warn('Could not save RSVP locally:', err);
+        }
+
+        // 4. Google Apps Script backup if configured
+        if (config.integrations?.googleAppsScriptUrl) {
+          fetch(config.integrations.googleAppsScriptUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(rsvpData)
+          }).catch(err => console.warn('Webhook sync error:', err));
+        }
+
+        // 5. Success state
+        if (rsvpGuestNameDisplay) {
+          rsvpGuestNameDisplay.textContent = name;
+        }
+
+        rsvpFormContainer.style.display = 'none';
+        rsvpConfirmation.classList.add('active');
+
+        setupCalendarButtons(eventChoice);
       } catch (err) {
-        console.warn('Could not save RSVP locally:', err);
+        console.error('RSVP submission error:', err);
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitBtnSpan) submitBtnSpan.textContent = 'Send RSVP';
+        rsvpErrorEl.textContent = 'Unable to submit your RSVP right now. Please check your connection and try again.';
+        rsvpErrorEl.style.display = 'block';
       }
-
-      if (config.integrations?.googleAppsScriptUrl) {
-        fetch(config.integrations.googleAppsScriptUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(rsvpData)
-        }).catch(err => console.warn('Webhook sync error:', err));
-      }
-
-      if (rsvpGuestNameDisplay) {
-        rsvpGuestNameDisplay.textContent = name;
-      }
-
-      rsvpFormContainer.style.display = 'none';
-      rsvpConfirmation.classList.add('active');
-
-      setupCalendarButtons(eventChoice);
     });
   }
 
@@ -658,7 +738,7 @@
     }
   }
 
-  function generateAndDownloadIcs(title, location, description, startDate, endDate) {
+  function generateAndDownloadIcs(title, venue, description, startDate, endDate) {
     function formatIcsDate(d) {
       return d.toISOString().replace(/-|:|\.\d+/g, '');
     }
@@ -666,17 +746,17 @@
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Ashik and Jerrin Wedding//EN',
+      'PRODID:-//Ashik & Jerrin Wedding//EN',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
-      `UID:${Date.now()}@ashik-jerrin-wedding`,
+      `UID:${Date.now()}@ashikandjerrin.com`,
       `DTSTAMP:${formatIcsDate(new Date())}`,
       `DTSTART:${formatIcsDate(startDate)}`,
       `DTEND:${formatIcsDate(endDate)}`,
       `SUMMARY:${title}`,
-      `DESCRIPTION:${description}`,
-      `LOCATION:${location}`,
+      `DESCRIPTION:${description.replace(/\n/g, '\\n')}`,
+      `LOCATION:${venue.replace(/\n/g, '\\n')}`,
       'STATUS:CONFIRMED',
       'END:VEVENT',
       'END:VCALENDAR'
@@ -697,11 +777,13 @@
   function initGuestbook() {
     let wishes = [];
 
-    try {
-      const stored = JSON.parse(localStorage.getItem('wedding_guestbook_wishes') || '[]');
-      wishes = [...stored, ...(config.initialWishes || [])];
-    } catch (e) {
-      wishes = config.initialWishes || [];
+    function getLocalOrInitialWishes() {
+      try {
+        const stored = JSON.parse(localStorage.getItem('wedding_guestbook_wishes') || '[]');
+        return [...stored, ...(config.initialWishes || [])];
+      } catch (e) {
+        return config.initialWishes || [];
+      }
     }
 
     function renderWishes() {
@@ -717,7 +799,53 @@
       `).join('');
     }
 
+    // Initial render from local/config while Firestore connects
+    wishes = getLocalOrInitialWishes();
     renderWishes();
+
+    // Connect to Firestore real-time listener
+    const firestoreDb = getFirestoreDb();
+    if (firestoreDb) {
+      try {
+        firestoreDb.collection('wishes')
+          .orderBy('createdAt', 'desc')
+          .onSnapshot((snapshot) => {
+            if (!snapshot.empty) {
+              const liveWishes = [];
+              snapshot.forEach(doc => {
+                const data = doc.data();
+                let dateStr = data.date;
+                if (!dateStr && data.createdAt) {
+                  const d = data.createdAt.toDate ? data.createdAt.toDate() : new Date(data.createdAt);
+                  dateStr = d.toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric'
+                  });
+                }
+                liveWishes.push({
+                  id: doc.id,
+                  name: data.name || 'Well-wisher',
+                  message: data.message || '',
+                  date: dateStr || ''
+                });
+              });
+              wishes = liveWishes;
+              renderWishes();
+            } else {
+              // If collection is empty, display initial curated wishes
+              wishes = config.initialWishes || [];
+              renderWishes();
+            }
+          }, (err) => {
+            console.warn('Firestore wishes snapshot listener note:', err);
+            wishes = getLocalOrInitialWishes();
+            renderWishes();
+          });
+      } catch (err) {
+        console.warn('Could not attach Firestore wishes listener:', err);
+      }
+    }
 
     if (openWishModalBtn && wishModal) {
       openWishModalBtn.addEventListener('click', () => {
@@ -745,10 +873,12 @@
     }
 
     if (wishForm) {
-      wishForm.addEventListener('submit', (e) => {
+      wishForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const authorInput = document.getElementById('wish-author-input');
         const messageInput = document.getElementById('wish-message-input');
+        const modalSubmitBtn = wishForm.querySelector('button[type="submit"]');
+        const modalSubmitText = modalSubmitBtn ? modalSubmitBtn.querySelector('span') : null;
 
         const name = authorInput ? authorInput.value.trim() : '';
         const message = messageInput ? messageInput.value.trim() : '';
@@ -764,26 +894,48 @@
           year: 'numeric'
         });
 
-        const newWish = {
-          id: 'wish-' + Date.now(),
-          name,
-          message,
-          date: dateFormatted
-        };
-
-        wishes.unshift(newWish);
+        if (modalSubmitBtn) modalSubmitBtn.disabled = true;
+        if (modalSubmitText) modalSubmitText.textContent = 'Posting Blessing...';
 
         try {
-          const stored = JSON.parse(localStorage.getItem('wedding_guestbook_wishes') || '[]');
-          stored.unshift(newWish);
-          localStorage.setItem('wedding_guestbook_wishes', JSON.stringify(stored));
-        } catch (err) {
-          console.warn('Could not save wish locally:', err);
-        }
+          const firestoreDb = getFirestoreDb();
+          if (firestoreDb) {
+            await firestoreDb.collection('wishes').add({
+              name,
+              message,
+              date: dateFormatted,
+              createdAt: (window.firebase && firebase.firestore?.FieldValue)
+                ? firebase.firestore.FieldValue.serverTimestamp()
+                : new Date().toISOString()
+            });
+          } else {
+            // Local offline fallback
+            const newWish = {
+              id: 'wish-' + Date.now(),
+              name,
+              message,
+              date: dateFormatted
+            };
+            wishes.unshift(newWish);
+            try {
+              const stored = JSON.parse(localStorage.getItem('wedding_guestbook_wishes') || '[]');
+              stored.unshift(newWish);
+              localStorage.setItem('wedding_guestbook_wishes', JSON.stringify(stored));
+            } catch (err) {
+              console.warn('Could not save wish locally:', err);
+            }
+            renderWishes();
+          }
 
-        renderWishes();
-        wishForm.reset();
-        if (wishModal) wishModal.classList.remove('open');
+          wishForm.reset();
+          if (wishModal) wishModal.classList.remove('open');
+        } catch (err) {
+          console.error('Error posting wish:', err);
+          alert('Unable to post your blessing right now. Please check your internet connection and try again.');
+        } finally {
+          if (modalSubmitBtn) modalSubmitBtn.disabled = false;
+          if (modalSubmitText) modalSubmitText.textContent = 'Post Blessing';
+        }
       });
     }
   }
