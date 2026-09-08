@@ -1248,6 +1248,29 @@ button {
     display: flex;
   }
 
+  /* Bottom fade for the portrait (mobile) hero — the portrait artwork's
+     painted cream border is cropped out by cover-fit, so the illustration
+     would otherwise cut abruptly into the body. Mirrors the landscape
+     hero's vignette-to-body transition at a moderated intensity. */
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: clamp(96px, 17vh, 150px);
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(244, 235, 225, 0.15) 30%,
+      rgba(244, 235, 225, 0.38) 58%,
+      rgba(244, 235, 225, 0.78) 84%,
+      var(--color-cream) 100%
+    );
+    pointer-events: none;
+    z-index: 3;
+  }
+
   /* Cinematic hero capped at 92vh/dvh to prevent excessive scrolling */
   .hero-section {
     height: 92vh;
@@ -1258,7 +1281,7 @@ button {
   }
 
   .hero-content {
-    padding: 4.5rem 1.25rem 2.2rem;
+    padding: 4.5rem 1.25rem 3.25rem;
   }
 
   .hero-eyebrow {
