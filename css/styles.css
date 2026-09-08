@@ -157,6 +157,8 @@ button {
   right: 0;
   z-index: 100;
   padding: 1.4rem 0;
+  transform: translateZ(0);
+  will-change: transform, background-color, padding;
   transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -1271,13 +1273,17 @@ button {
     z-index: 3;
   }
 
-  /* Cinematic hero capped at 92vh/dvh to prevent excessive scrolling */
+  /* Full-bleed mobile hero — takes 100% of visible viewport on load so
+     the next section (#story) is completely below the fold and not visible.
+     Uses 100svh (small viewport height) with 100vh fallback so height does
+     not resize dynamically when the browser address bar collapses/expands,
+     preventing the scrolling jerk. */
   .hero-section {
-    height: 92vh;
-    height: 92dvh;
-    min-height: 520px;
-    max-height: 100vh;
-    max-height: 100dvh;
+    height: 100vh;
+    height: 100svh;
+    min-height: 100vh;
+    min-height: 100svh;
+    max-height: none;
   }
 
   .hero-content {
@@ -1345,4 +1351,68 @@ button {
     gap: 1.2rem;
   }
 }
+
+/* ==========================================================================
+   PHONE LANDSCAPE & SHORT SCREEN VIEWPORTS
+   Prevents vertical overflow, cramped layout, and scroll jerking on mobile
+   devices rotated to landscape or screens with short vertical heights.
+   ========================================================================== */
+@media (orientation: landscape) and (max-height: 520px), (max-height: 500px) {
+  .site-header {
+    padding: 0.65rem 0;
+  }
+
+  .site-header.scrolled {
+    padding: 0.5rem 0;
+  }
+
+  .hero-section {
+    height: 100vh;
+    height: 100svh;
+    min-height: 100vh;
+    min-height: 100svh;
+    max-height: none;
+    align-items: flex-end;
+  }
+
+  .hero-section::after {
+    height: clamp(48px, 12vh, 72px);
+  }
+
+  .hero-content {
+    padding: 3.2rem 1.25rem 1.5rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-couple-names {
+    font-size: clamp(1.85rem, 5.2vw, 2.75rem);
+    line-height: 1.05;
+  }
+
+  .hero-rule {
+    margin: 0.65rem auto;
+    width: 44px;
+  }
+
+  .hero-date-line {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    letter-spacing: 0.12em;
+  }
+
+  .hero-location-line {
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+  }
+
+  /* Compact section spacing for short landscape screens */
+  .section-wrapper {
+    padding: clamp(2rem, 5vw, 3rem) 1.5rem;
+  }
+}
+
 

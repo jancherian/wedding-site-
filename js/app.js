@@ -160,14 +160,29 @@
      2. STICKY NAV & SCROLL SPY
      ========================================================================== */
   function initNavigation() {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
+    let scrollTicking = false;
+    const trackedSections = document.querySelectorAll('section[id]');
+
+    function onScrollFrame() {
+      const scrollY = window.scrollY;
+      if (scrollY > 40) {
         siteHeader.classList.add('scrolled');
       } else {
         siteHeader.classList.remove('scrolled');
       }
-      updateActiveNavLink();
+      updateActiveNavLink(scrollY, trackedSections);
+      scrollTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(onScrollFrame);
+        scrollTicking = true;
+      }
     }, { passive: true });
+
+    // Initial check on load
+    onScrollFrame();
 
     if (mobileToggle && mobileOverlay) {
       mobileToggle.addEventListener('click', () => {
@@ -205,11 +220,11 @@
     });
   }
 
-  function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPos = window.scrollY + 140;
+  function updateActiveNavLink(scrollY, sections) {
+    const sectionList = sections || document.querySelectorAll('section[id]');
+    const scrollPos = (scrollY !== undefined ? scrollY : window.scrollY) + 140;
 
-    sections.forEach(section => {
+    sectionList.forEach(section => {
       const top = section.offsetTop;
       const height = section.offsetHeight;
       const id = section.getAttribute('id');

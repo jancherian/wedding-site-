@@ -50,9 +50,18 @@ Single-page wedding invitation website for Ashik & Jerrin.
   portrait artwork's painted border is cropped out by cover-fit. Mobile
   hero text sits at `padding-bottom: 3.25rem` to keep the fade band clear
   of the text — keep that pairing if you ever retune either.
+- Hero height sizing: mobile hero is set to `100vh; height: 100svh; min-height: 100svh; max-height: none;`
+  so the next section (#story) is completely below the fold and not visible
+  when the site is opened. Using stable `100svh` instead of `92dvh` prevents
+  the hero from resizing when the browser address bar collapses/expands, eliminating
+  scroll jumps/jerks.
+- Phone landscape & short screens: handled by dedicated `@media (orientation: landscape) and (max-height: 520px), (max-height: 500px)`
+  rules with compact header padding, scaled typography (`clamp(1.85rem, 5.2vw, 2.75rem)`),
+  and proportional bottom fade to prevent vertical overflow and scrolling stutter.
 - Nav bar: has a light vignette treatment behind it for text legibility at
   the top of the hero; sticky/scrolled nav behavior is intentional and
-  should NOT be changed.
+  should NOT be changed. Hardware accelerated with `transform: translateZ(0)` and
+  scroll events are throttled with `requestAnimationFrame` for buttery-smooth 60/120fps scrolling.
 
 ## Backend / Data
 - **Firebase Firestore** (project: `ashik-jerrin-wedding`, region:
@@ -85,6 +94,10 @@ Single-page wedding invitation website for Ashik & Jerrin.
 - Hero text legibility regressed at one point (missing overlay) — fixed;
   verify text stays legible against both hero images after any future
   hero-related changes.
+- Mobile hero was previously capped at 92vh/dvh causing the next section
+  (#story cathedral photo) to peek into the initial viewport on page load,
+  and causing a layout jerk on scroll down/up due to dynamic dvh recalculation.
+  Fixed with stable 100svh/100vh full-bleed sizing and RAF scroll throttling.
 
 ## Pending / Open Items
 1. Update Formspree notification email once the couple provides their
