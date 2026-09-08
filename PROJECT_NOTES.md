@@ -44,9 +44,12 @@ Single-page wedding invitation website for Ashik & Jerrin.
 - Landscape hero has a tuned vignette/fade at the bottom transitioning into
   the body section (already resolved after some iteration — moderate
   intensity, not overexposed, not just a thin sliver).
-- **PENDING:** Portrait (mobile) hero is missing that same bottom fade —
-  it currently cuts off abruptly into the next section. Needs the same
-  fade treatment as the landscape version, matched in intensity.
+- Portrait (mobile) hero now has the same bottom fade (resolved): a
+  mobile-scoped `.hero-section::after` cream gradient in the ≤720px media
+  query blends the artwork's bottom into the body canvas, since the
+  portrait artwork's painted border is cropped out by cover-fit. Mobile
+  hero text sits at `padding-bottom: 3.25rem` to keep the fade band clear
+  of the text — keep that pairing if you ever retune either.
 - Nav bar: has a light vignette treatment behind it for text legibility at
   the top of the hero; sticky/scrolled nav behavior is intentional and
   should NOT be changed.
@@ -84,11 +87,9 @@ Single-page wedding invitation website for Ashik & Jerrin.
   hero-related changes.
 
 ## Pending / Open Items
-1. Add bottom fade/vignette to the portrait (mobile) hero image, matching
-   the landscape version's already-tuned treatment.
-2. Update Formspree notification email once the couple provides their
+1. Update Formspree notification email once the couple provides their
    actual email address.
-3. Domain (`ashikandjerrin.site`) was purchased for ~2 months of use only
+2. Domain (`ashikandjerrin.site`) was purchased for ~2 months of use only
    — no need to renew after the wedding dates pass; it's fine to let it
    lapse.
 
