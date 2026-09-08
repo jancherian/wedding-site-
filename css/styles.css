@@ -1228,6 +1228,10 @@ button {
 }
 
 @media (max-width: 720px) {
+  :root {
+    --space-section: clamp(2.5rem, 6vw, 3.75rem);
+  }
+
   .nav-links-desktop {
     display: none;
   }
@@ -1236,17 +1240,64 @@ button {
     display: flex;
   }
 
+  /* Cinematic hero capped at 92vh/dvh to prevent excessive scrolling */
   .hero-section {
-    min-height: 66svh;
-    min-height: max(66svh, 500px);
+    height: 92vh;
+    height: 92dvh;
+    min-height: 520px;
+    max-height: 100vh;
+    max-height: 100dvh;
   }
 
   .hero-content {
-    padding: 5.5rem 1.5rem 3.2rem;
+    padding: 4.5rem 1.25rem 2.2rem;
   }
 
+  .hero-eyebrow {
+    font-size: 0.74rem;
+    letter-spacing: 0.28em;
+    margin-bottom: 1.1rem;
+  }
+
+  .hero-couple-names {
+    font-size: clamp(2.5rem, 8.5vw, 3.6rem);
+    line-height: 1.1;
+  }
+
+  .hero-rule {
+    margin: 1.4rem auto;
+    width: 56px;
+  }
+
+  .hero-date-line {
+    font-size: clamp(1.05rem, 2.8vw, 1.3rem);
+    letter-spacing: 0.14em;
+  }
+
+  .hero-location-line {
+    font-size: 1.02rem;
+    margin-top: 0.4rem;
+  }
+
+  /* Perfectly frame both the Eiffel Tower tip and the couple's faces without clipping */
   .hero-background-img {
-    object-position: 44% 50%;
+    object-position: 46% 18%;
+  }
+
+  /* Eliminate excessive blank cream-colored gap below hero */
+  #story.section-wrapper {
+    padding-top: clamp(1.75rem, 4vw, 2.5rem);
+    padding-bottom: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  #story .story-editorial-split {
+    gap: 1.75rem;
+    opacity: 1;
+    transform: none;
+  }
+
+  .story-signature {
+    margin-top: 1.25rem;
   }
 
   .countdown-grid {
@@ -1263,3 +1314,4 @@ button {
     gap: 1.2rem;
   }
 }
+
